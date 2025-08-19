@@ -2,8 +2,11 @@ import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { Trend } from 'k6/metrics';
 
-let responseTimeTrend = new Trend('response_time');
+// Load the url from services file
+const config = JSON.parse(open('./services/services.json'));
+const baseUrl = config.PutUrl;
 
+let responseTimeTrend = new Trend('response_time');
 
 export let options = {
     stages: [
@@ -22,7 +25,7 @@ export let options = {
 
 
 export default function () {
-  const url = 'https://tutserv-dev-uks-app-002.azurewebsites.net/RequestTimetableChange'; 
+  const url = `${baseUrl}/RequestTimetableChange`;
 
   const payload = JSON.stringify({
     timetableEventType: 0,
