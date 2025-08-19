@@ -1,0 +1,45 @@
+config:
+  target: "https://tutserv-dev-uks-app-002.azurewebsites.net"
+  phases:
+    - duration: 30
+      arrivalRate: 10  # Ramp-up to 10 VUs
+      name: Ramp-up
+    - duration: 60
+      arrivalRate: 10  # Stay at 10 VUs for 1 minute
+      name: Steady load
+    - duration: 10
+      arrivalRate: 0   # Ramp-down to 0 VUs
+      name: Ramp-down
+  defaults:
+    headers:
+      Content-Type: "application/json"
+  plugins:
+    ensure:
+      thresholds:
+        - http.response_time.p99: 1000
+        - http.response_time.p95: 800
+    apdex:
+      threshold: 500  # default is 500
+    metrics-by-endpoint: {}      
+
+scenarios:
+  - name: "PUT RequestTimetableChange"
+    flow:
+      - post:
+          url: "/RequestTimetableChange"
+          json:
+            timetableEventType: 0
+            facultyName: "string"
+            moduleNumber: "string"
+            presentationPeriod: "string"
+            tutorialName: "string"
+            tutorialType: 0
+            clusterOrTutorialGroupId: "string"
+            previousTutorialDate: "2025-08-14T09:01:50.167Z"
+            previousStartTime: "2025-08-14T09:01:50.167Z"
+            tutorialDate: "2025-08-14T09:01:50.167Z"
+            startTime: "2025-08-14T09:01:50.167Z"
+            endTime: "2025-08-14T09:01:50.167Z"
+            assignedTutors:
+              - "string"
+            maximumStudentAttendence: 0
