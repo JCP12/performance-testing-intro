@@ -1,0 +1,16 @@
+{
+  "timetableEventType": 0,
+  "facultyName": "string",
+  "moduleNumber": "string",
+  "presentationPeriod": "string",
+  "tutorialName": "string",
+  "tutorialType": 0,
+  "clusterOrTutorialGroupId": "string",
+  "previousTutorialDate": "2025-08-14T09:01:50.167Z",
+  "previousStartTime": "2025-08-14T09:01:50.167Z",
+  "tutorialDate": "2025-08-14T09:01:50.167Z",
+  "startTime": "2025-08-14T09:01:50.167Z",
+  "endTime": "2025-08-14T09:01:50.167Z",
+  "assignedTutors": ["string"],
+  "maximumStudentAttendence": 0
+}
